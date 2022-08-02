@@ -1,1 +1,1 @@
-GET http://localhost:5000/reviews/3
+PUT http://localhost:5000/reviews/1

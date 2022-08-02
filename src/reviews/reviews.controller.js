@@ -14,13 +14,17 @@ async function reviewExists(req, res, next) {
   }
 
   async function update(req, res) {
+    const time = new Date().toISOString();
+    const reviewId = res.locals.review.review_id
     const updatedReview = {
       ...req.body.data,
-      review_id: res.locals.review.review_id,
+      review_id: reviewId,
       
     }
-    const data = await reviewService.update(updatedReview)
-    res.json({ data: updatedReview });
+    await reviewService.update(updatedReview)
+    const info = await reviewService.updateCritic(reviewId)
+    const data = { ...info[0], created_at: time, updated_at: time};
+    res.json({ data });
   }
 
   async function destroy(req, res) {
