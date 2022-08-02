@@ -21,8 +21,26 @@ function read(movieId) {
 
 }
 
+function listTheatersHostingMovie() {
+    return knex("theaters as t")
+    .join("movies_theaters as mt", "mt.theater_id", "t.theater_id")
+    .select("t.*")
+    .groupBy("t.theater_id")
+    }
+
+    function listReviewsAndCritics(movieId) {
+        return knex("reviews as r")
+        .join("critics as c", "c.critic_id", "r.critic_id")
+        .join("movies as m", "m.movie_id", "r.movie_id")
+        .select("r.*", "c.*")
+        .where({"m.movie_id" : movieId})
+
+    }
+
 module.exports = {
     list,
     listAiringMovies,
     read,
+    listTheatersHostingMovie,
+    listReviewsAndCritics,
 }
