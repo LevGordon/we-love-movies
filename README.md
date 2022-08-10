@@ -1,7 +1,7 @@
 # we-love-movies
 The back-end for a movie-streaming website like Netflix or Putlockers.
 
-              Backend deployment: 
+              Backend deployment: https://welovemovies-lg.herokuapp.com/
 
 
 Project: WeLoveMovies
